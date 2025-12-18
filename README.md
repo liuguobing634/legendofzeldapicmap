@@ -1,6 +1,6 @@
 # Tauri + React + Typescript
 
-本项目是塞尔达王国之泪选图工具的前端项目，欢迎各个up主拿来用于塞尔达王国之泪选图，
+本项目是塞尔达王国之泪选图工具的前端项目，练手项目
 
 使用Tauri + React + Typescript + Vite构建。
 
