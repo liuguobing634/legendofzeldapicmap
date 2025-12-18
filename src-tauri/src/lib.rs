@@ -1,4 +1,6 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+use base64::prelude::*;
+
 #[tauri::command]
 fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
@@ -7,7 +9,7 @@ fn greet(name: &str) -> String {
 #[tauri::command]
 fn read_file_base64(path: String) -> Result<String, String> {
     let bytes = std::fs::read(path).map_err(|e| e.to_string())?;
-    Ok(base64::encode(bytes))
+    Ok(BASE64_STANDARD.encode(bytes))
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
