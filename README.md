@@ -1,6 +1,8 @@
 # Tauri + React + Typescript
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+本项目是塞尔达王国之泪选图工具的前端项目，欢迎各个up主拿来用于塞尔达王国之泪选图，
+
+使用Tauri + React + Typescript + Vite构建。
 
 ## Recommended IDE Setup
 
