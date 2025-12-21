@@ -27,12 +27,12 @@ function App() {
   function loadConfig(): WheelConfig {
     try {
       const raw = localStorage.getItem("spinwheel:config");
-      if (!raw) return { title: "转盘", backgroundUrl: "", items: defaults };
+      if (!raw) return { title: "转盘", backgroundUrl: "", items: defaults, spinDuration: 2500 };
       const data = JSON.parse(raw) as WheelConfig;
-      if (!data || !Array.isArray(data.items)) return { title: "转盘", backgroundUrl: "", items: defaults };
-      return { title: data.title ?? "转盘", backgroundUrl: data.backgroundUrl ?? "", items: data.items.length ? data.items : defaults };
+      if (!data || !Array.isArray(data.items)) return { title: "转盘", backgroundUrl: "", items: defaults, spinDuration: 2500 };
+      return { title: data.title ?? "转盘", backgroundUrl: data.backgroundUrl ?? "", items: data.items.length ? data.items : defaults, spinDuration: data.spinDuration ?? 2500 };
     } catch {
-      return { title: "转盘", backgroundUrl: "", items: defaults };
+      return { title: "转盘", backgroundUrl: "", items: defaults, spinDuration: 2500 }; 
     }
   }
 
@@ -73,7 +73,7 @@ function App() {
       <section className="main-area">
         <SpinWheel
           items={cfg.items}
-          spinDuration={2500}
+          spinDuration={cfg.spinDuration}
           size={420}
           showLegend={true}
           legendPosition="top"

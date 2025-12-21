@@ -6,6 +6,7 @@ export type WheelConfig = {
   title: string;
   backgroundUrl: string;
   items: string[];
+  spinDuration: number;
 };
 
 type SettingsModalProps = {
@@ -20,8 +21,11 @@ export default function SettingsModal({ open, initial, onSave, onClose }: Settin
   const [bg, setBg] = useState(initial.backgroundUrl ?? "");
   const [text, setText] = useState(() => initial.items.join("\n"));
 
+  const [spinDuration, setSpinDuration] = useState(initial.spinDuration ?? 2500);
+
   useEffect(() => {
     if (!open) return;
+    setSpinDuration(initial.spinDuration ?? 2500);
     setTitle(initial.title ?? "");
     setBg(initial.backgroundUrl ?? "");
     setText(initial.items.join("\n"));
@@ -64,9 +68,13 @@ export default function SettingsModal({ open, initial, onSave, onClose }: Settin
           <label className="form-label">选项（每行一个）</label>
           <textarea className="text-area" value={text} onChange={(e) => setText(e.target.value)} />
         </div>
+        <div className="form-row">
+          <label className="form-label">旋转时间（毫秒）</label>
+          <input className="text-input" type="number" value={spinDuration} onChange={(e) => setSpinDuration(Number(e.target.value))} />
+        </div>
         <div className="modal-actions">
           <button onClick={() => onClose()}>取消</button>
-          <button onClick={() => onSave({ title, backgroundUrl: bg, items: parsedItems })} disabled={parsedItems.length === 0}>保存</button>
+          <button onClick={() => onSave({ title, backgroundUrl: bg, items: parsedItems, spinDuration })} disabled={parsedItems.length === 0}>保存</button>
         </div>
       </div>
     </div>
